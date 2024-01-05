@@ -1,5 +1,9 @@
 # Importing functions and variables from settings.py
 from settings import *
+# Importing functions and variables from math.py
+from math import *
+# Importing functions and variables from errors.py
+from errors import *
 
 
 def string_to_char_list(string):
@@ -74,24 +78,27 @@ def get_user_input():
     gets user's input until valid
     :return: a list of arithmetic expression
     """
-    validation_flag = True
     math_expression_list = []
-    err_code = "INVALID_INPUT"
 
-    while validation_flag:
-        math_expression = input("Please enter an arithmetic expression: ")
-        math_expression_list = string_to_char_list(math_expression)
-        math_expression_list = merge_numerical_tokens(math_expression_list)
-        if not check_input_validation(math_expression_list):
-            print(f"{err_code} : {error_messages[err_code]}")
-        else:
-            validation_flag = False
+    math_expression = input("Please enter an arithmetic expression: ")
+    math_expression_list = string_to_char_list(math_expression)
+    math_expression_list = merge_numerical_tokens(math_expression_list)
+    if not check_input_validation(math_expression_list):
+        raise InvalidInputError()
     return math_expression_list
 
 
 def main():
+    validation_flag = True
+
     print_instructions()
-    expression_list = get_user_input()
+    while validation_flag:
+        try:
+            expression_list = get_user_input()
+            validation_flag = False
+        except InvalidInputError as invalidErr:
+            print(invalidErr)
+
 
 if __name__ == '__main__':
     main()
