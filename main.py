@@ -1,9 +1,9 @@
 # Importing functions and variables from settings.py
 from settings import *
-# Importing functions and variables from math.py
-from math import *
 # Importing functions and variables from errors.py
 from errors import *
+# Importing functions and variables from syntaxInspector.py
+from syntaxInspector import *
 
 
 def string_to_char_list(string):
@@ -36,6 +36,7 @@ def merge_numerical_tokens(list_of_tokens):
             current += member
         else:
             if current:
+                current = convert_type(current)
                 combined_tokens_list.append(current)
             current = ""
             combined_tokens_list.append(member)
@@ -43,8 +44,17 @@ def merge_numerical_tokens(list_of_tokens):
         list_of_tokens.remove(member)
     # adds the last member
     if current:
+        current = convert_type(current)
         combined_tokens_list.append(current)
     return combined_tokens_list
+
+
+def convert_type(string_to_convert):
+    try:
+        num = int(string_to_convert)
+    except ValueError:
+        num = float(string_to_convert)
+    return num
 
 
 def check_input_validation(user_input):
@@ -56,7 +66,8 @@ def check_input_validation(user_input):
     for member in user_input:
         if member not in symbol_intensity_map:
             if not is_number(member):
-                return False
+                if member != ')' and member != '(':
+                    return False
     return True
 
 
@@ -88,6 +99,102 @@ def get_user_input():
     return math_expression_list
 
 
+def handle_brackets(expression_list):
+    current_sub_expression = []
+    current_position = 0
+    start_position = 0
+
+    if '(' in expression_list:
+        start_position = expression_list.index('(')
+        current_position = start_position
+        if not check_brackets(expression_list):
+            raise BracketsError()
+        while expression_list[current_position + 1] != ')':
+            current_sub_expression.append(expression_list[current_position + 1])
+            current_position += 1
+    return current_sub_expression, start_position, current_position + 1
+
+
+def get_current_max_intensity(expression):
+    """
+    finds the current max intensity in the expression
+    :param expression: list
+    :return: current max intensity in the expression
+    """
+    max_intensity = 0
+    for member in expression:
+        if member in symbol_intensity_map:
+            if symbol_intensity_map[member] > max_intensity:
+                max_intensity = symbol_intensity_map[member]
+    return max_intensity
+
+
+def get_symbol_by_intensity(expression_list):
+    """
+    finds the first appearance of a symbol with the required intensity
+    :param expression_list: a list
+    :return: a symbol and its index in the list
+    """
+    intensity = get_current_max_intensity(expression_list)
+    for member in expression_list:
+        if member in symbol_intensity_map:
+            if symbol_intensity_map[member] == intensity:
+                return member, expression_list.index(member)
+
+
+def append_to_certain_index(members, to_append, index):
+    """
+    appends a required member to a list in a given index
+    :param members: a list
+    :param to_append: a member to append
+    :param index: an index in the list
+    :return: new list with appended member
+    """
+    new_list = []
+
+    if not members:
+        new_list.append(to_append)
+    else:
+        current_index = 0
+        while len(members) > current_index:
+            if current_index == index:
+                new_list.append(to_append)
+            new_list.append(members[current_index])
+            current_index += 1
+    return new_list
+
+
+def solve_expression(expression_list):
+    current_position = 0
+    start_position = 0
+    current_sub_expression = []
+    current_intensity = 0
+    result = 0
+
+    while len(expression_list) > 1:
+        if '(' in expression_list:
+            current_sub_expression, start_position, current_position = handle_brackets(expression_list)
+        else:
+            symbol, symbol_index = get_symbol_by_intensity(expression_list)
+            result, start_position, current_position = symbol_check_point(expression_list, symbol, symbol_index)
+
+        remove_from_list(expression_list, start_position, current_position)
+        expression_list = append_to_certain_index(expression_list, result, start_position)
+        current_sub_expression = []
+    return expression_list[0]
+
+
+def remove_from_list(mylist, start, end):
+    """
+    removes members of list from start index to end
+    :param mylist: a list
+    :param start: an index to start removing from
+    :param end: and index to end removing
+    """
+    for i in range(start, end + 1):
+        mylist.remove(mylist[start])
+
+
 def main():
     validation_flag = True
 
@@ -98,6 +205,21 @@ def main():
             validation_flag = False
         except InvalidInputError as invalidErr:
             print(invalidErr)
+    try:
+        result = solve_expression(expression_list)
+        print(result)
+    except BracketsError as bracketErr:
+        print(bracketErr)
+    except FactorialError as factorialErr:
+        print(factorialErr)
+    except DivisionByZero as zeroErr:
+        print(zeroErr)
+    except UnexpectedValueError as valueErr:
+        print(valueErr)
+    except UnexpectedTypeError as typeErr:
+        print(typeErr)
+    except NegationError as negErr:
+        print(negErr)
 
 
 if __name__ == '__main__':

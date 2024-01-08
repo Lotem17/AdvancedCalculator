@@ -1,12 +1,12 @@
 # Importing functions and variables from math.py
 from math import *
 
+MAX_INTENSITY = 6
+
 # Mapping symbols to intensity levels
 symbol_intensity_map = {
-    "(": 7,
-    ")": 7,
-    "!": 6,
-    "~": 6,
+    "!": MAX_INTENSITY,
+    "~": MAX_INTENSITY,
     "&": 5,
     "$": 5,
     "@": 5,
@@ -18,25 +18,15 @@ symbol_intensity_map = {
     "+": 1,
 }
 
-operation_symbols_map = {
-    "!": factorial,
-    "~": negation,
-    "&": minimum,
-    "$": maximum,
-    "@": average,
-    "%": remainder,
-    "^": power,
-    "/": division,
-    "*": multiplication,
-    "-": subtraction,
-    "+": addition,
-}
-
 error_messages = {
     "InvalidInputError": "Invalid input. Please provide valid data.",
     "UnexpectedTypeError": "Received unexpected type of value. Please make sure the expression is valid. ",
     "UnexpectedValueError": "Received unexpected value. Please make sure the expression is valid. ",
-    "DivisionByZero": "division or modulo by zero. "
+    "DivisionByZero": "division or modulo by zero. ",
+    "BracketsError": "Invalid usage of brackets. ",
+    "FactorialError": "Invalid usage of factorial. ",
+    "NegativeBaseFractionalExponent": "incorrect application of fractional exponentiation to a negative base.",
+    "NegationError": "Invalid usage of negation. ",
 }
 
 

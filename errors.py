@@ -36,3 +36,39 @@ class DivisionByZero(Exception):
 
     def __str__(self):
         return f"{'DivisionByZero'} : {error_messages['DivisionByZero']}"
+
+
+class BracketsError(Exception):
+    """
+    Raising an unexpected type error
+    """
+
+    def __str__(self):
+        return f"{'BracketsError'} : {error_messages['BracketsError']}"
+
+
+class FactorialError(Exception):
+    """
+    Raising an unexpected type error
+    """
+
+    def __str__(self):
+        return f"{'FactorialError'} : {error_messages['FactorialError']}"
+
+
+class NegativeBaseFractionalExponent(Exception):
+    """
+    Raising an unexpected type error
+    """
+
+    def __str__(self):
+        return f"{'NegativeBaseFractionalExponent'} : {error_messages['NegativeBaseFractionalExponent']}"
+
+
+class NegationError(Exception):
+    """
+    Raising an unexpected type error
+    """
+
+    def __str__(self):
+        return f"{'NegationError'} : {error_messages['NegationError']}"
