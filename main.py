@@ -99,18 +99,27 @@ def get_user_input():
     return math_expression_list
 
 
-def handle_brackets(expression_list):
+def extract_from_brackets(expression_list):
     current_sub_expression = []
     current_position = 0
     start_position = 0
+    count_open = 1
+    count_close = 0
 
     if '(' in expression_list:
         start_position = expression_list.index('(')
         current_position = start_position
         if not check_brackets(expression_list):
             raise BracketsError()
-        while expression_list[current_position + 1] != ')':
-            current_sub_expression.append(expression_list[current_position + 1])
+        while current_position < len(expression_list) - 1:
+            if expression_list[current_position + 1] == '(':
+                count_open += 1
+            elif expression_list[current_position + 1] == ')':
+                count_close += 1
+            if count_open == count_close:
+                break
+            else:
+                current_sub_expression.append(expression_list[current_position + 1])
             current_position += 1
     return current_sub_expression, start_position, current_position + 1
 
@@ -133,13 +142,14 @@ def get_symbol_by_intensity(expression_list):
     """
     finds the first appearance of a symbol with the required intensity
     :param expression_list: a list
-    :return: a symbol and its index in the list
+    :return: a symbol and its index in the list or 0 if not valid
     """
     intensity = get_current_max_intensity(expression_list)
     for member in expression_list:
         if member in symbol_intensity_map:
             if symbol_intensity_map[member] == intensity:
                 return member, expression_list.index(member)
+    return intensity, 0
 
 
 def append_to_certain_index(members, to_append, index):
@@ -161,38 +171,38 @@ def append_to_certain_index(members, to_append, index):
                 new_list.append(to_append)
             new_list.append(members[current_index])
             current_index += 1
+    if len(members) == len(new_list):
+        new_list.append(to_append)
     return new_list
+
+
+def handle_brackets(expression_list):
+    current_sub_expression = []
+    current_position = 0
+    start_position = 0
+
+    current_sub_expression, start_position, current_position = extract_from_brackets(expression_list)
+    result = solve_expression(current_sub_expression)
+    return result, start_position, current_position
 
 
 def solve_expression(expression_list):
     current_position = 0
     start_position = 0
-    current_sub_expression = []
     current_intensity = 0
     result = 0
 
     while len(expression_list) > 1:
         if '(' in expression_list:
-            current_sub_expression, start_position, current_position = handle_brackets(expression_list)
+            result, start_position, current_position = handle_brackets(expression_list)
         else:
             symbol, symbol_index = get_symbol_by_intensity(expression_list)
+            if symbol == 0:
+                raise InvalidInputError()
             result, start_position, current_position = symbol_check_point(expression_list, symbol, symbol_index)
-
-        remove_from_list(expression_list, start_position, current_position)
+        del expression_list[start_position:current_position + 1]
         expression_list = append_to_certain_index(expression_list, result, start_position)
-        current_sub_expression = []
     return expression_list[0]
-
-
-def remove_from_list(mylist, start, end):
-    """
-    removes members of list from start index to end
-    :param mylist: a list
-    :param start: an index to start removing from
-    :param end: and index to end removing
-    """
-    for i in range(start, end + 1):
-        mylist.remove(mylist[start])
 
 
 def main():
@@ -208,6 +218,8 @@ def main():
     try:
         result = solve_expression(expression_list)
         print(result)
+    except InvalidInputError as invalidErr:
+        print(invalidErr)
     except BracketsError as bracketErr:
         print(bracketErr)
     except FactorialError as factorialErr:
@@ -220,6 +232,24 @@ def main():
         print(typeErr)
     except NegationError as negErr:
         print(negErr)
+    except MinimumError as miniErr:
+        print(miniErr)
+    except MaximumError as maxErr:
+        print(maxErr)
+    except AvgError as avgErr:
+        print(avgErr)
+    except RemainderError as rErr:
+        print(rErr)
+    except DivError as divErr:
+        print(divErr)
+    except PowerError as powErr:
+        print(powErr)
+    except MulError as mulErr:
+        print(mulErr)
+    except SubError as subErr:
+        print(subErr)
+    except AddError as addErr:
+        print(addErr)
 
 
 if __name__ == '__main__':

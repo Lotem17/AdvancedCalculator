@@ -27,6 +27,15 @@ error_messages = {
     "FactorialError": "Invalid usage of factorial. ",
     "NegativeBaseFractionalExponent": "incorrect application of fractional exponentiation to a negative base.",
     "NegationError": "Invalid usage of negation. ",
+    "MinimumError": "Invalid usage of minimum",
+    "MaximumError": "Invalid usage of minimum",
+    "AvgError": "Invalid usage of average",
+    "RemainderError": "Invalid usage of remainder",
+    "PowerError": "Invalid usage of power",
+    "DivError": "Invalid usage of division",
+    "MulError": "Invalid usage of multiplication",
+    "SubError": "Invalid usage of subscription",
+    "AddError": "Invalid usage of addition",
 }
 
 
