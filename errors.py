@@ -153,3 +153,12 @@ class AddError(Exception):
 
     def __str__(self):
         return f"{'AddError'} : {error_messages['AddError']}"
+
+
+class UnaryMinusError(Exception):
+    """
+    Raising an unexpected type error
+    """
+
+    def __str__(self):
+        return f"{'UnaryMinusError'} : {error_messages['UnaryMinusError']}"

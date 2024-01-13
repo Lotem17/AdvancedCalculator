@@ -1,7 +1,13 @@
+# This module is intended to check the syntax of the symbols
+# inside the list. if the syntax is valid, the result is returned
+
+
 # Importing functions and variables from math.py
 import math1
 # Importing functions and variables from errors.py
 from errors import *
+# Importing functions and variables from expression_solver.py
+import expression_solver
 
 
 def check_range_end(expression, index):
@@ -75,6 +81,9 @@ def check_negation(expression, index):
     if check_range_end(expression, index + 1):
         raise NegationError()
     num = expression[index + 1]
+    if num == '-':
+        expression_solver.handle_minus(expression)
+        num = expression[index + 1]
     if is_number(num):
         result = math1.negation(num)
         return result, index, index + 1
