@@ -65,7 +65,7 @@ def is_unary_minus(expression_list, index_of_minus):
     """
     next_in_list = expression_list[index_of_minus + 1]
     # unary minus does not have an expression before it
-    if index_of_minus - 1 >= -len(expression_list) and (expression_list[index_of_minus - 1] in left_unary_symbols
+    if index_of_minus - 1 >= -len(expression_list) and (expression_list[index_of_minus - 1] in right_unary_symbols
                                                         or is_number(expression_list[index_of_minus - 1])):
         return False
     # unary minus has these operands after it
@@ -114,7 +114,7 @@ def handle_minus(expression_list):
             if is_unary_minus(expression_list, index) and is_minus_to_append(expression_list, index):
                 expression_list[index] += str(expression_list[index + 1])
                 expression_list[index] = shrink_minuses(expression_list[index])
-                expression_list[index] = int(expression_list[index])
+                expression_list[index] = float(expression_list[index])
                 del expression_list[index + 1]
                 index = + 1
         index -= 1

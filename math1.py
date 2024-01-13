@@ -124,3 +124,16 @@ def addition(num1, num2):
     :return: result of Addition between 2 nums
     """
     return num1 + num2
+
+
+def sum_digits(num):
+    """
+    calculates the sum of number's digits
+    :param num: int number
+    :return: sum of digits
+    """
+    sum = 0
+    while int(num) > 0:
+        sum += int(num % 10)
+        num /= 10
+    return sum

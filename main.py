@@ -37,8 +37,6 @@ def math_solver(expression_list):
     """
     try:
         result = solve_expression(expression_list)
-        if type(result) == int:
-            result = int(result)
         return result
     except InvalidInputError as invalidErr:
         print(invalidErr)
@@ -74,13 +72,16 @@ def math_solver(expression_list):
         print(addErr)
     except UnaryMinusError as minusErr:
         print(minusErr)
+    except SumNumbersError as sumErr:
+        print(sumErr)
 
 
 def main():
     print_instructions()
     expression_list = get_user_input()
     result = math_solver(expression_list)
-    print(result)
+    if result:
+        print(result)
 
 if __name__ == '__main__':
     main()

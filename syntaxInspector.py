@@ -71,6 +71,37 @@ def check_factorial(expression, index):
     raise FactorialError()
 
 
+def check_hash(expression, index):
+    """
+    checks if hash symbol is on the right side of a num
+    :param expression: an arithmetical expression
+    :param index: the index of the symbol
+    :return: result of calculation, start and end position to delete
+    """
+    if check_range_start(index - 1):
+        raise SumNumbersError()
+    num = expression[index - 1]
+    if is_number(num):
+        num = remove_dot_from_float(num)
+        result = math1.sum_digits(num)
+        return result, index - 1, index
+    raise SumNumbersError()
+
+def remove_dot_from_float(fnum):
+    """
+    removes dot from float num
+    :param fnum: a float num
+    :return: int num
+    """
+    int_num = ""
+    fnum = str(fnum)
+    new_num = fnum.split(".")
+    for char in new_num:
+        if char != ".":
+            int_num += char
+    int_num = int(int_num)
+    return int_num
+
 def check_negation(expression, index):
     """
     checks if tilda symbol is on the left side of a num
@@ -292,3 +323,5 @@ def symbol_check_point(expression, symbol, symbol_index):
             return check_sub(expression, symbol_index)
         case "+":
             return check_add(expression, symbol_index)
+        case "#":
+            return check_hash(expression, symbol_index)

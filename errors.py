@@ -162,3 +162,12 @@ class UnaryMinusError(Exception):
 
     def __str__(self):
         return f"{'UnaryMinusError'} : {error_messages['UnaryMinusError']}"
+
+
+class SumNumbersError(Exception):
+    """
+    Raising an unexpected type error
+    """
+
+    def __str__(self):
+        return f"{'SumNumbersError'} : {error_messages['SumNumbersError']}"

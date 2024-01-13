@@ -1,12 +1,13 @@
 MAX_INTENSITY = 6
 MIN_INTENSITY = 1
 
-left_unary_symbols = ["#", "!",]
+right_unary_symbols = ["#", "!",]
 
 # Mapping symbols to intensity levels
 symbol_intensity_map = {
     "!": MAX_INTENSITY,
     "~": MAX_INTENSITY,
+    "#": MAX_INTENSITY,
     "&": 5,
     "$": 5,
     "@": 5,
@@ -36,7 +37,8 @@ error_messages = {
     "MulError": "Invalid usage of multiplication",
     "SubError": "Invalid usage of subscription",
     "AddError": "Invalid usage of addition",
-    "UnaryMinusError": "Unary minus must be beside -, ( or a num"
+    "UnaryMinusError": "Unary minus must be beside -, ( or a num",
+    "SumNumbersError": "Invalid usage of hash mark",
 }
 
 
