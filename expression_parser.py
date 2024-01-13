@@ -84,6 +84,8 @@ def check_input_validation(user_input):
     :param user_input: a list of user's input
     :return: true if valid, false if not
     """
+    if not user_input:
+        return False
     for member in user_input:
         if member not in symbol_intensity_map:
             if not is_number(member):

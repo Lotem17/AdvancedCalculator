@@ -202,6 +202,8 @@ def solve_expression(expression_list):
     result = 0
 
     # while there is only one var in the list, which means all is solved and the list contains the result
+    if not expression_list:
+        return None
     while len(expression_list) > 1:
         if '(' in expression_list:
             result, start_position, current_position = handle_brackets(expression_list)

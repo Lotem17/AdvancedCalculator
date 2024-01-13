@@ -26,6 +26,9 @@ def get_user_input():
             validation_flag = False
         except InvalidInputError as invalidErr:
             print(invalidErr)
+        except EOFError as eofErr:
+            print(eofErr)
+            break
     return math_expression_list
 
 
@@ -74,14 +77,15 @@ def math_solver(expression_list):
         print(minusErr)
     except SumNumbersError as sumErr:
         print(sumErr)
+    except NegativeBaseFractionalExponent as nErr:
+        print(nErr)
 
 
 def main():
     print_instructions()
     expression_list = get_user_input()
     result = math_solver(expression_list)
-    if result:
-        print(result)
+    print(result)
 
 if __name__ == '__main__':
     main()
