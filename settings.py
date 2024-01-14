@@ -57,4 +57,5 @@ def print_instructions():
     print('9) * (Asterisk): Multiplication')
     print('10) - (Hyphen): Subtraction')
     print('11) + (Plus Sign): Addition')
+    print('12) # (Hash mark): Sum of digits')
     print("--------------------------------------------------------------------------------")

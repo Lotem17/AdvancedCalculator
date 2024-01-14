@@ -85,7 +85,9 @@ def main():
     print_instructions()
     expression_list = get_user_input()
     result = math_solver(expression_list)
-    print(result)
+    if result is not None:
+        print(result)
+
 
 if __name__ == '__main__':
     main()
