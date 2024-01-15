@@ -2,7 +2,7 @@
 # inside the list. if the syntax is valid, the result is returned
 
 
-# Importing functions and variables from math.py
+# Importing functions and variables from math_functions.py
 import math_functions
 # Importing functions and variables from errors.py
 from errors import *

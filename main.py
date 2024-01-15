@@ -77,9 +77,13 @@ def math_solver(expression_list):
 
 
 def main():
+    # print instructions
     print_instructions()
+    # get valid input
     expression_list = get_user_input()
+    # solve expression
     result = math_solver(expression_list)
+    # print result if no exception occured
     if result is not None:
         if result >= MAX_VALID_NUM:
             result = 'inf'
