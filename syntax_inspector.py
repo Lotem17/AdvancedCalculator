@@ -3,7 +3,7 @@
 
 
 # Importing functions and variables from math.py
-import math1
+import math_functions
 # Importing functions and variables from errors.py
 from errors import *
 # Importing functions and variables from expression_solver.py
@@ -66,7 +66,7 @@ def check_factorial(expression, index):
         raise FactorialError()
     num = expression[index - 1]
     if is_number(num):
-        result = math1.factorial(num)
+        result = math_functions.factorial(num)
         return result, index - 1, index
     raise FactorialError()
 
@@ -83,9 +83,10 @@ def check_hash(expression, index):
     num = expression[index - 1]
     if is_number(num):
         num = remove_dot_from_float(num)
-        result = math1.sum_digits(num)
+        result = math_functions.sum_digits(num)
         return result, index - 1, index
     raise SumNumbersError()
+
 
 def remove_dot_from_float(fnum):
     """
@@ -102,6 +103,7 @@ def remove_dot_from_float(fnum):
     int_num = int(int_num)
     return int_num
 
+
 def check_negation(expression, index):
     """
     checks if tilda symbol is on the left side of a num
@@ -116,7 +118,7 @@ def check_negation(expression, index):
         expression_solver.handle_minus(expression)
         num = expression[index + 1]
     if is_number(num):
-        result = math1.negation(num)
+        result = math_functions.negation(num)
         return result, index, index + 1
     raise NegationError()
 
@@ -135,7 +137,7 @@ def check_minimum(expression, index):
     num1 = expression[index - 1]
     num2 = expression[index + 1]
     if is_number(num1) and is_number(num2):
-        result = math1.minimum(num1, num2)
+        result = math_functions.minimum(num1, num2)
         return result, index - 1, index + 1
     raise MinimumError()
 
@@ -154,7 +156,7 @@ def check_maximum(expression, index):
     num1 = expression[index - 1]
     num2 = expression[index + 1]
     if is_number(num1) and is_number(num2):
-        result = math1.maximum(num1, num2)
+        result = math_functions.maximum(num1, num2)
         return result, index - 1, index + 1
     raise MaximumError()
 
@@ -173,14 +175,14 @@ def check_average(expression, index):
     num1 = expression[index - 1]
     num2 = expression[index + 1]
     if is_number(num1) and is_number(num2):
-        result = math1.average(num1, num2)
+        result = math_functions.average(num1, num2)
         return result, index - 1, index + 1
     raise AvgError()
 
 
 def check_reminder(expression, index):
     """
-    checks if modulu symbol between numbers
+    checks if % symbol between numbers
     :param expression: an arithmetical expression
     :param index: the index of the symbol
     :return: result of calculation, start and end position to delete
@@ -192,7 +194,7 @@ def check_reminder(expression, index):
     num1 = expression[index - 1]
     num2 = expression[index + 1]
     if is_number(num1) and is_number(num2):
-        result = math1.remainder(num1, num2)
+        result = math_functions.remainder(num1, num2)
         return result, index - 1, index + 1
     raise RemainderError()
 
@@ -211,7 +213,7 @@ def check_power(expression, index):
     num1 = expression[index - 1]
     num2 = expression[index + 1]
     if is_number(num1) and is_number(num2):
-        result = math1.power(num1, num2)
+        result = math_functions.power(num1, num2)
         return result, index - 1, index + 1
     raise PowerError()
 
@@ -230,7 +232,7 @@ def check_division(expression, index):
     num1 = expression[index - 1]
     num2 = expression[index + 1]
     if is_number(num1) and is_number(num2):
-        result = math1.division(num1, num2)
+        result = math_functions.division(num1, num2)
         return result, index - 1, index + 1
     raise DivError()
 
@@ -249,7 +251,7 @@ def check_mul(expression, index):
     num1 = expression[index - 1]
     num2 = expression[index + 1]
     if is_number(num1) and is_number(num2):
-        result = math1.multiplication(num1, num2)
+        result = math_functions.multiplication(num1, num2)
         return result, index - 1, index + 1
     raise MulError()
 
@@ -268,7 +270,7 @@ def check_sub(expression, index):
     num1 = expression[index - 1]
     num2 = expression[index + 1]
     if is_number(num1) and is_number(num2):
-        result = math1.subtraction(num1, num2)
+        result = math_functions.subtraction(num1, num2)
         return result, index - 1, index + 1
     raise SubError()
 
@@ -287,7 +289,7 @@ def check_add(expression, index):
     num1 = expression[index - 1]
     num2 = expression[index + 1]
     if is_number(num1) and is_number(num2):
-        result = math1.addition(num1, num2)
+        result = math_functions.addition(num1, num2)
         return result, index - 1, index + 1
     raise AddError()
 

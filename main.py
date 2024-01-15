@@ -21,6 +21,7 @@ def get_user_input():
             math_expression = input("Please enter an arithmetic expression: ")
             math_expression_list = string_to_char_list(math_expression)
             math_expression_list = merge_numerical_tokens(math_expression_list)
+            math_expression_list = delete_white_spaces(math_expression_list)
             if not check_input_validation(math_expression_list):
                 raise InvalidInputError()
             validation_flag = False
@@ -40,6 +41,8 @@ def math_solver(expression_list):
     """
     try:
         result = solve_expression(expression_list)
+        if result >= MAX_VALID_NUM:
+            result = 'inf'
         return result
     except InvalidInputError as invalidErr:
         print(invalidErr)

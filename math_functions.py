@@ -1,5 +1,7 @@
 # Importing functions and variables from errors.py
 from errors import *
+# Importing functions and variables from settings.py
+from settings import *
 
 
 def factorial(num):
@@ -12,9 +14,14 @@ def factorial(num):
         raise UnexpectedTypeError()
     if num < 0:
         raise UnexpectedValueError()
-    if num == 0:
-        return 1
-    return factorial(num - 1) * num
+    result = 1
+    counter = 0
+    while counter < num:
+        result *= num
+        num -= 1
+        if result >= MAX_VALID_NUM:
+            counter = num
+    return result
 
 
 def negation(num):

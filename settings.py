@@ -1,7 +1,8 @@
 MAX_INTENSITY = 6
 MIN_INTENSITY = 1
+MAX_VALID_NUM = 10 ** 80
 
-right_unary_symbols = ["#", "!",]
+right_unary_symbols = ["#", "!", ]
 
 # Mapping symbols to intensity levels
 symbol_intensity_map = {
@@ -23,7 +24,7 @@ error_messages = {
     "InvalidInputError": "Invalid input. Please provide valid data.",
     "UnexpectedTypeError": "Received unexpected type of value. Please make sure the expression is valid. ",
     "UnexpectedValueError": "Received unexpected value. Please make sure the expression is valid. ",
-    "DivisionByZero": "division or modulo by zero. ",
+    "DivisionByZero": "Division or modulo by zero. ",
     "BracketsError": "Invalid usage of brackets. ",
     "FactorialError": "Invalid usage of factorial. ",
     "NegativeBaseFractionalExponent": "incorrect application of fractional exponentiation to a negative base.",

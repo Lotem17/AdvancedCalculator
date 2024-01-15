@@ -1,10 +1,8 @@
 # This module is intended to solve the user's expression by finding the
 # current prioritized part and solving it until the final result remains
 
-# Importing functions and variables from errors.py
-import errors
 # Importing functions and variables from syntaxInspector.py
-from syntaxInspector import *
+from syntax_inspector import *
 # Importing functions and variables from expression_parser.py
 from expression_parser import *
 

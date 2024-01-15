@@ -92,3 +92,16 @@ def check_input_validation(user_input):
                 if member != ')' and member != '(':
                     return False
     return True
+
+
+def delete_white_spaces(expression_list):
+    """
+    deletes tabs and spaces
+    :param expression_list: a math list
+    :return: new list
+    """
+    cleaned_list = []
+    for member in expression_list:
+        if member != ' ' and member != '\t':
+            cleaned_list.append(member)
+    return cleaned_list
