@@ -1,9 +1,3 @@
-# Importing functions and variables from settings.py
-from settings import *
-# Importing functions and variables from errors.py
-from errors import *
-# Importing functions and variables from expression_parser.py
-from expression_parser import *
 # Importing functions and variables from expression_solver.py
 from expression_solver import *
 
@@ -41,8 +35,6 @@ def math_solver(expression_list):
     """
     try:
         result = solve_expression(expression_list)
-        if result >= MAX_VALID_NUM:
-            result = 'inf'
         return result
     except InvalidInputError as invalidErr:
         print(invalidErr)
@@ -89,6 +81,8 @@ def main():
     expression_list = get_user_input()
     result = math_solver(expression_list)
     if result is not None:
+        if result >= MAX_VALID_NUM:
+            result = 'inf'
         print(result)
 
 

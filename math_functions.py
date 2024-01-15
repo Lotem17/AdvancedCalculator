@@ -139,8 +139,8 @@ def sum_digits(num):
     :param num: int number
     :return: sum of digits
     """
-    sum = 0
+    sum_digits = 0
     while int(num) > 0:
-        sum += int(num % 10)
+        sum_digits += int(num % 10)
         num /= 10
-    return sum
+    return sum_digits

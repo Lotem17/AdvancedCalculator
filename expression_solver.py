@@ -45,9 +45,6 @@ def handle_brackets(expression_list):
     :param expression_list: an arithmetic expression
     :return: the result along with the start and end positions of the extracted sub-expression
     """
-    current_sub_expression = []
-    current_position = 0
-    start_position = 0
 
     current_sub_expression, start_position, current_position = extract_from_brackets(expression_list)
     result = solve_expression(current_sub_expression)
@@ -194,10 +191,6 @@ def solve_expression(expression_list):
     :param expression_list: a list of math expression
     :return: result
     """
-    current_position = 0
-    start_position = 0
-    current_intensity = 0
-    result = 0
 
     # while there is only one var in the list, which means all is solved and the list contains the result
     if not expression_list:
