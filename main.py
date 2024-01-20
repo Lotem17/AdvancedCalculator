@@ -2,28 +2,17 @@
 from expression_solver import *
 
 
-def get_user_input():
+def get_user_input(math_expression):
     """
     gets user's input until valid
     :return: a list of arithmetic expression
     """
     math_expression_list = []
-    validation_flag = True
-
-    while validation_flag:
-        try:
-            math_expression = input("Please enter an arithmetic expression: ")
-            math_expression_list = string_to_char_list(math_expression)
-            math_expression_list = merge_numerical_tokens(math_expression_list)
-            math_expression_list = delete_white_spaces(math_expression_list)
-            if not check_input_validation(math_expression_list):
-                raise InvalidInputError()
-            validation_flag = False
-        except InvalidInputError as invalidErr:
-            print(invalidErr)
-        except EOFError as eofErr:
-            print(eofErr)
-            break
+    math_expression_list = string_to_char_list(math_expression)
+    math_expression_list = merge_numerical_tokens(math_expression_list)
+    math_expression_list = delete_white_spaces(math_expression_list)
+    if not check_input_validation(math_expression_list):
+        raise InvalidInputError()
     return math_expression_list
 
 
@@ -76,18 +65,31 @@ def math_solver(expression_list):
         print(nErr)
 
 
+def calculator(math_expression):
+    """
+    start calculator for test
+    :param math_expression: input string
+    :return:
+    """
+    try:
+        expression_list = get_user_input(math_expression)
+        result = math_solver(expression_list)
+        return result
+    except InvalidInputError as invalidErr:
+        print(invalidErr)
+
+
 def main():
-    # print instructions
     print_instructions()
-    # get valid input
-    expression_list = get_user_input()
-    # solve expression
-    result = math_solver(expression_list)
-    # print result if no exception occured
-    if result is not None:
-        if result >= MAX_VALID_NUM:
-            result = 'inf'
-        print(result)
+    try:
+        math_expression = input("Please enter an arithmetic expression: ")
+        result = calculator(math_expression)
+        if result is not None:
+            if result >= MAX_VALID_NUM:
+                result = 'inf'
+            print(result)
+    except EOFError as eofErr:
+        print(eofErr)
 
 
 if __name__ == '__main__':

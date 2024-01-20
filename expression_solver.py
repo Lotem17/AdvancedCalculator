@@ -109,7 +109,11 @@ def handle_minus(expression_list):
             if is_unary_minus(expression_list, index) and is_minus_to_append(expression_list, index):
                 expression_list[index] += str(expression_list[index + 1])
                 expression_list[index] = shrink_minuses(expression_list[index])
-                expression_list[index] = float(expression_list[index])
+                float_value = float(expression_list[index])
+                if float_value.is_integer():
+                    expression_list[index] = int(float_value)
+                else:
+                    expression_list[index] = float_value
                 del expression_list[index + 1]
                 index = + 1
         index -= 1
@@ -152,6 +156,8 @@ def append_to_certain_index(members, to_append, index):
     :return: new list with appended member
     """
     new_list = []
+    if to_append % 1 == 0:
+        to_append = int(to_append)
 
     if not members:
         new_list.append(to_append)
@@ -208,4 +214,6 @@ def solve_expression(expression_list):
             result, start_position, current_position = symbol_check_point(expression_list, symbol, symbol_index)
         del expression_list[start_position:current_position + 1]
         expression_list = append_to_certain_index(expression_list, result, start_position)
+    if expression_list[0] in symbol_intensity_map:
+        raise InvalidInputError()
     return expression_list[0]

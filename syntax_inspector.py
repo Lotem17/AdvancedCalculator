@@ -82,10 +82,23 @@ def check_hash(expression, index):
         raise SumNumbersError()
     num = expression[index - 1]
     if is_number(num):
+        num = handle_exponential(str(num))
         num = remove_dot_from_float(num)
         result = math_functions.sum_digits(num)
         return result, index - 1, index
     raise SumNumbersError()
+
+
+def handle_exponential(str_num):
+    """
+    handle exponential float by removing the e
+    :param str_num: a num as a string
+    :return: the number without the zeros
+    """
+    if 'e' in str_num:
+        value = str_num.split('e')
+        return float(value[0])
+    return float(str_num)
 
 
 def remove_dot_from_float(fnum):

@@ -4,7 +4,7 @@ from settings import *
 
 class InvalidInputError(Exception):
     """
-    Raising an invalid input error
+    Raising error
     """
 
     def __str__(self):
@@ -13,7 +13,7 @@ class InvalidInputError(Exception):
 
 class UnexpectedTypeError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -22,7 +22,7 @@ class UnexpectedTypeError(Exception):
 
 class UnexpectedValueError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -31,7 +31,7 @@ class UnexpectedValueError(Exception):
 
 class DivisionByZero(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -40,7 +40,7 @@ class DivisionByZero(Exception):
 
 class BracketsError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -49,7 +49,7 @@ class BracketsError(Exception):
 
 class FactorialError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -58,7 +58,7 @@ class FactorialError(Exception):
 
 class NegativeBaseFractionalExponent(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -67,7 +67,7 @@ class NegativeBaseFractionalExponent(Exception):
 
 class NegationError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -76,7 +76,7 @@ class NegationError(Exception):
 
 class MinimumError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -85,7 +85,7 @@ class MinimumError(Exception):
 
 class MaximumError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -94,7 +94,7 @@ class MaximumError(Exception):
 
 class AvgError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -103,7 +103,7 @@ class AvgError(Exception):
 
 class RemainderError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -112,7 +112,7 @@ class RemainderError(Exception):
 
 class PowerError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -121,7 +121,7 @@ class PowerError(Exception):
 
 class DivError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -130,7 +130,7 @@ class DivError(Exception):
 
 class MulError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -139,7 +139,7 @@ class MulError(Exception):
 
 class SubError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -148,7 +148,7 @@ class SubError(Exception):
 
 class AddError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -157,7 +157,7 @@ class AddError(Exception):
 
 class UnaryMinusError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
@@ -166,7 +166,7 @@ class UnaryMinusError(Exception):
 
 class SumNumbersError(Exception):
     """
-    Raising an unexpected type error
+    Raising error
     """
 
     def __str__(self):
